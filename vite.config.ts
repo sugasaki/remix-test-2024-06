@@ -1,15 +1,15 @@
-import { vitePlugin as remix } from "@remix-run/dev";
-import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
-import { copyFileSync } from "node:fs";
-import { join } from "node:path";
+import { vitePlugin as remix } from '@remix-run/dev';
+import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { copyFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 export default defineConfig({
-  base: "/remix-test-2024-06/",
+  base: '/remix-test-2024-06/',
   plugins: [
     remix({
       ssr: false,
-      basename: "/remix-test-2024-06/",
+      basename: '/remix-test-2024-06/',
       buildEnd(args) {
         if (!args.viteConfig.isProduction) return;
 
@@ -22,11 +22,8 @@ export default defineConfig({
         // GH Pages will serve our 404.html and everything will work as
         //expected.
         const buildPath = args.viteConfig.build.outDir;
-        copyFileSync(
-          join(buildPath, "index.html"),
-          join(buildPath, "404.html"),
-        );
-      }
+        copyFileSync(join(buildPath, 'index.html'), join(buildPath, '404.html'));
+      },
       future: {
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
